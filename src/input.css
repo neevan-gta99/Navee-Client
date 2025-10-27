@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.customer-main-navbar {
+    @apply fixed top-0 left-0 w-full z-50 flex flex-col justify-center items-center border-b;
+
+    /* border-bottom-width: 2px; 
+  border-color: rgba(255, 255, 255, var(--tw-border-opacity)); 
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.5);  */
+}
+
+
+.customer-top-navbar {
+    @apply flex flex-row justify-around items-center w-screen h-16
+}
+
+.customer-bottom-navbar {
+    @apply flex flex-row border-t h-14
+}
+
+.nav-links {
+    @apply flex flex-row justify-around items-center w-screen
+}
+
+.fashion-video {
+    @apply absolute top-0 left-0 w-full h-full object-cover z-[-1];
+}
+
+
+/* top navbar css */
+
+.hover-underline-without-scroll {
+    @apply relative text-white;
+}
+
+.hover-underline-without-scroll::after {
+    content: '';
+    @apply absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-300;
+}
+
+.hover-underline-without-scroll:hover::after {
+    @apply w-full;
+}
+
+.hover-underline-with-scroll {
+    @apply relative text-black;
+
+}
+
+.hover-underline-with-scroll::after {
+    content: '';
+    @apply absolute left-0 bottom-0 h-[2px] w-0 bg-black transition-all duration-300;
+}
+
+.hover-underline-with-scroll:hover::after {
+    @apply w-full;
+}
+
+
+.logo {
+    @apply flex justify-center;
+
+    width: 10%;
+
+}
+
+.search-bar {
+    @apply border border-white;
+    width: 38%;
+
+}
+
+.become-seller {
+    @apply flex justify-center;
+    width: 15%;
+
+}
+
+.login-signup {
+    @apply flex justify-around items-center gap-4;
+    width: 18%;
+}
+
+.login-btn-without-scroll {
+    @apply pt-1 pb-1 pr-5 pl-5 border border-white text-white transition-all duration-700 hover:bg-white hover:text-black hover:rounded-md;
+}
+
+.signup-btn-without-scroll {
+    @apply pt-1 pb-1 pr-5 pl-5 border border-white text-white transition-all duration-700 hover:bg-white hover:text-black hover:rounded-md;
+}
+
+.login-btn-with-scroll {
+    @apply pt-1 pb-1 pr-5 pl-5 border border-black text-black transition-all duration-700 hover:bg-black hover:text-white hover:rounded-md;
+}
+
+.signup-btn-with-scroll {
+    @apply pt-1 pb-1 pr-5 pl-5 border border-black text-black transition-all duration-700 hover:bg-black hover:text-white hover:rounded-md;
+}
+
+/* bottom navbar css */
+.dropdown-pointer {
+    @apply transition-transform duration-300;
+
+    font-size: 0.785rem;
+    margin-top: 0.200rem;
+}
+
+.dropdown-pointer-parentdiv {
+    @apply cursor-pointer flex items-center gap-1;
+}
+
+.dropdown-ul {
+    @apply absolute bg-white text-black shadow-md mt-2 rounded w-48 z-50 transition-all duration-300 ease-out transform;
+}
+
+
+.offer-strip {
+
+    @apply bg-white text-black h-8 p-5 flex justify-around items-center mt-12 rounded-lg drop-shadow-lg;
+
+    width: 95%;
+    color: crimson;
+
+}
+
+.section-heading {
+  @apply m-5 text-2xl font-bold text-center;
+  color: crimson;
+}
+
+.section-wear {
+  @apply flex flex-wrap justify-center gap-4 m-5 w-full;
+}
+
+.section-offer {
+  @apply flex flex-col items-center p-4 transition-all duration-300 ease-in-out;
+
+  border: 1px solid crimson;
+
+  /* Responsive widths */
+  width: 90%; /* Mobile default */
+
+  gap: 0.545rem;
+}
+
+.section-item-name{
+    @apply font-bold;
+
+    font-size: 0.995rem;
+    line-height: 1rem;
+    margin-top: 1px;
+
+}
+.section-item-subcategory{
+
+    @apply text-sm font-semibold;
+
+    color: gray;
+
+}
+.section-item-discount{
+    @apply font-medium;
+
+    font-size: medium;
+    color: crimson;
+    font-weight: 600;
+}
+.section-item-finalprice{
+    @apply text-black font-bold;
+}
+
+@media (min-width: 640px) { /* sm: */
+  .section-offer {
+    width: 45%;
+  }
+}
+
+@media (min-width: 768px) { /* md: */
+  .section-offer {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .section-offer {
+    width: 15%;
+  }
+}
+
+.section-offer:hover {
+  @apply shadow-2xl rounded-xl cursor-pointer;
+}
+
+.section-imgs {
+  @apply w-full h-[300px] object-cover rounded-lg;
+}
+
+.women-heading {
+    @apply m-5;
+    color: crimson;
+}
+
+.women-wear {
+    @apply flex justify-around items-center m-5;
+}
+
+.women-offer {
+    width: 15%;
+    gap: 0.1rem;
+    border: 1px solid crimson;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.women-imgs {
+    width: 80%;
+}
+
+.boys-girls {
+    width: 45%;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+
+}
+
+.brands-grands {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 2rem;
+
+}
+
+.brands-grands-offer {
+    width: 35%;
+    border: 1px solid crimson;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.brands-grands-imgs {
+    width: 60%;
+}
+
+.bags-suitcases-luggage {
+    width: 30%;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.bags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.suitcases {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.luggage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.bags-suitcases-luggage-offer {
+    width: 35%;
+    border: 1px solid crimson;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+
+/* other pages */
+
+.filters {
+    @apply border-black border m-10;
+
+    width: 18%;
+    height: 100vh;
+
+}
+
+.products {
+
+    @apply border-black border m-10 flex flex-col justify-center items-center;
+
+    width: 78%;
+    height: 100vh;
+
+}
+
+.banner {
+    @apply border-black border m-10;
+
+    width: 100%;
+    height: 28%;
+
+}
+
+.products-showcase {
+    @apply border-black border m-10;
+
+    width: 100%;
+    height: 78%;
+
+}
+
+.seller-main-navbar {
+
+    @apply shadow-md;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+
+}
+
+.seller-main-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.showcase-section {
+    background-color: aquamarine;
+    display: flex;              /* row layout */
+    justify-content: center;    /* center horizontally */
+    align-items: flex-start;    /* top align (ya center agar chaho) */
+    gap: 2rem;                  /* dono columns ke beech gap */
+    padding: 2rem;              /* andar ka spacing */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.showcase-section-filter {
+    flex: 0 0 30%;              /* 30% width fix */
+    max-width: 300px;           /* optional limit */
+    padding: 1rem;
+    border: 2px solid red;
+    background: #fff;           /* thoda contrast ke liye */
+    border-radius: 8px;
+}
+
+.showcase-section-products {
+    flex: 1;                    /* bacha hua space le */
+    min-width: 0;               /* text overflow fix */
+    padding: 1rem;
+    border: 2px solid violet;
+    background: #fff;
+    border-radius: 8px;
+}
