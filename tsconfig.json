@@ -10,7 +10,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@config/*": ["src/config/*"]
-    }
+    },
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   }
 
 }
