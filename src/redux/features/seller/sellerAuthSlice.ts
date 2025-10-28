@@ -44,7 +44,7 @@ export const logoutSellerSession = createAsyncThunk(
     'sellerAuth/logoutSellerSession',
     async (_, { dispatch }) => {
         try {
-            const res = await fetch(`${BASE_URL}/seller/logout`, {
+            const res = await fetch(`${BASE_URL}/api/seller/logout`, {
                 method: 'POST',
                 credentials: 'include',
             });

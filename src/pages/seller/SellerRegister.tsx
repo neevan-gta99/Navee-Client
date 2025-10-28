@@ -45,8 +45,8 @@ const SellerRegister = () => {
     
     setServerError("");
 
-    const duplicateRegisterCheckUrl = `${BASE_URL}/seller/register/check`;
-    const registerUrl = `${BASE_URL}/seller/register`;
+    const duplicateRegisterCheckUrl = `${BASE_URL}/api/seller/register/check`;
+    const registerUrl = `${BASE_URL}/api/seller/register`;
 
     const formData = new FormData();
 
