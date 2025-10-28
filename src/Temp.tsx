@@ -16,7 +16,7 @@ function Temp() {
             formData.append("collection", "Men Topwear");
             
         } else {
-            console.warn("No file selected");
+            console.warn("No file selected! Sorry");
             return;
         }
 
