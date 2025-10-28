@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { csvTemplateLinks } from "@/utils/csvTemplateLinks";
 import { useForm } from "react-hook-form";
-import { BASE_URL } from "@/config/apiConfig";
+import { BASE_URL } from "@/config/apiConfig.ts";
 
 function AddInBulk() {
   const [searchParams] = useSearchParams();

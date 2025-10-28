@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_URL } from "@/config/apiConfig";
+import { BASE_URL } from "@/config/apiConfig.ts";
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';

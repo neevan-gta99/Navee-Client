@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/config/apiConfig';
+import { BASE_URL } from '@/config/apiConfig.ts';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store/store';
 import React, { useCallback, useEffect, useRef, useState } from 'react';

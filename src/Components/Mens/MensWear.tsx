@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/config/apiConfig';
+import { BASE_URL } from '@/config/apiConfig.ts.ts';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

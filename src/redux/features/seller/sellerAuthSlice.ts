@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { BASE_URL } from '@/config/apiConfig';
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 
 interface SellerAuthState {

@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/config/apiConfig.ts';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store/store';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -139,7 +140,7 @@ function AddSuitcases() {
 
     try {
       // Corrected API endpoint for a dedicated suitcase category
-      const response = await fetch("http://localhost:6173/api/addProduct/suitcases", {
+      const response = await fetch(`${BASE_URL}/api/addProduct/suitcases`, {
         method: "POST",
         body: formData,
         credentials: "include",

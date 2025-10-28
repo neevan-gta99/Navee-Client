@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import type { RootState } from "@/redux/store/store";
 import { useAppSelector } from '@/redux/hooks';
-import { BASE_URL } from '@/config/apiConfig';
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 function AddMenTopwear() {
     const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
