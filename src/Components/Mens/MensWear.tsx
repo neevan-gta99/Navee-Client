@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/config/apiConfig';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +21,7 @@ function MensWear() {
   useEffect(() => {
     const fetchMensTopwear = async () => {
       try {
-        const getMensTopwearURL = "http://localhost:6173/api/getProduct/get-showcase-men-topwears";
+        const getMensTopwearURL = `${BASE_URL}/api/getProduct/get-showcase-men-topwears`;
         const response = await fetch(getMensTopwearURL);
         const receivedData = await response.json();
         setData(receivedData.productInfo);

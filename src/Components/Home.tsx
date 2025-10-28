@@ -13,9 +13,10 @@ const Home = () => {
                     loop
                     playsInline
                 >
-                    <source src="/videos/fashionVideo.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/de9nsk1zx/video/upload/v1761584191/Fashionvideo_jxhrmk.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
+
 
                 {/* 🔥 Black Overlay */}
                 <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60 z-10"></div>

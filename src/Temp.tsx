@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BASE_URL } from "./config/apiConfig";
 
 function Temp() {
 
@@ -19,7 +20,7 @@ function Temp() {
             return;
         }
 
-        const res = await fetch("http://localhost:6173/api/test/imageUpload", {
+        const res = await fetch(`${BASE_URL}/api/test/imageUpload`, {
             method: "POST",
             body: formData,
         });

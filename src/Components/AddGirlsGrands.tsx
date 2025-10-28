@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/config/apiConfig';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store/store';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -157,7 +158,7 @@ function AddGirlsGrands() {
 
     try {
       // Updated API endpoint to girls-clothing
-      const response = await fetch("http://localhost:6173/api/addProduct/girls-grands", {
+      const response = await fetch(`${BASE_URL}/api/addProduct/girls-grands`, {
         method: "POST",
         body: formData,
         credentials: "include",

@@ -2,6 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { csvTemplateLinks } from "@/utils/csvTemplateLinks";
 import { useForm } from "react-hook-form";
+import { BASE_URL } from "@/config/apiConfig";
 
 function AddInBulk() {
   const [searchParams] = useSearchParams();
@@ -49,7 +50,7 @@ function AddInBulk() {
     }
 
     try {
-      const res = await fetch("http://localhost:6173/api/addProduct/men-topwear/bulk", {
+      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk`, {
         method: "POST",
         body: formData,
       });

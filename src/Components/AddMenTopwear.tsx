@@ -3,6 +3,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import type { RootState } from "@/redux/store/store";
 import { useAppSelector } from '@/redux/hooks';
+import { BASE_URL } from '@/config/apiConfig';
 
 function AddMenTopwear() {
     const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
@@ -128,7 +129,7 @@ function AddMenTopwear() {
         }
 
         try {
-            const response = await fetch("http://localhost:6173/api/addProduct/men-topwear", {
+            const response = await fetch(`${BASE_URL}/api/addProduct/men-topwear`, {
                 method: "POST",
                 body: formData,
                 credentials: "include",

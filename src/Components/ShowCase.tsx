@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/config/apiConfig';
 import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ function ShowCase() {
 
     const fetchShowcaseLazyLoad = async () => {
         try {
-            const showcaseURL = `http://localhost:6173/api/getProduct/showcase-lazy-load?subCategory=${encodeURIComponent(sub_Category || '')}&offset=${offset}`;
+            const showcaseURL = `${BASE_URL}/api/getProduct/showcase-lazy-load?subCategory=${encodeURIComponent(sub_Category || '')}&offset=${offset}`;
             const response = await fetch(showcaseURL);
             const json = await response.json();
 

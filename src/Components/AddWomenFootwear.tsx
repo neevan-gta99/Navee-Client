@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/config/apiConfig';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store/store';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -136,7 +137,7 @@ function AddWomenFootwear() {
     }
 
     try {
-      const response = await fetch("http://localhost:6173/api/addProduct/women-footwear", {
+      const response = await fetch(`${BASE_URL}/api/addProduct/women-footwear`, {
         method: "POST",
         body: formData,
         credentials: "include",
