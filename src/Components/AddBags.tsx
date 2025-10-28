@@ -3,6 +3,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import type { RootState } from "@/redux/store/store";
 import { useAppSelector } from '@/redux/hooks';
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 
 function AddBags() {
@@ -140,7 +141,7 @@ function AddBags() {
     }
 
     try {
-      const response = await fetch("http://localhost:6173/api/addProduct/bags", {
+      const response = await fetch(`${BASE_URL}/addProduct/bags`, {
         method: "POST",
         body: formData,
         credentials: "include",

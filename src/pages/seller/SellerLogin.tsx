@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setLoginSession } from "@/redux/features/seller/sellerAuthSlice";
 import type { RootState } from '@/redux/store/store';
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 
 
@@ -36,7 +37,7 @@ function SellerLogin() {
   const onSubmit = async (data: any) => {
     setServerError(''); // Reset previous errors
     try {
-      const response = await fetch("http://localhost:6173/api/seller/login", {
+      const response = await fetch(`${BASE_URL}/seller/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

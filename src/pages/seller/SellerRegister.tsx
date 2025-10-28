@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 const SellerRegister = () => {
   const [serverError, setServerError] = useState('');
@@ -44,8 +45,8 @@ const SellerRegister = () => {
     
     setServerError("");
 
-    const duplicateRegisterCheckUrl = "http://localhost:6173/api/seller/register/check";
-    const registerUrl = "http://localhost:6173/api/seller/register";
+    const duplicateRegisterCheckUrl = `${BASE_URL}/seller/register/check`;
+    const registerUrl = `${BASE_URL}/seller/register`;
 
     const formData = new FormData();
 

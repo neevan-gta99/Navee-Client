@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store/store';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { BASE_URL } from '@/config/apiConfig.ts';
 
 function SellerProfile() {
     const { sellerId } = useParams();
@@ -90,8 +91,8 @@ function SellerProfile() {
         const fetchProfile = async () => {
             try {
                 const url = sellerId
-                    ? `http://localhost:6173/api/seller/getInfo?sellerId=${sellerId}`
-                    : `http://localhost:6173/api/seller/getInfo`;
+                    ? `${BASE_URL}/seller/getInfo?sellerId=${sellerId}`
+                    : `${BASE_URL}/seller/getInfo`;
 
                 const res = await fetch(url, {
                     credentials: "include", // Cookies भेजें
