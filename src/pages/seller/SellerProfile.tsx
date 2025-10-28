@@ -91,8 +91,8 @@ function SellerProfile() {
         const fetchProfile = async () => {
             try {
                 const url = sellerId
-                    ? `${BASE_URL}/seller/getInfo?sellerId=${sellerId}`
-                    : `${BASE_URL}/seller/getInfo`;
+                    ? `${BASE_URL}/api/seller/getInfo?sellerId=${sellerId}`
+                    : `${BASE_URL}/api/seller/getInfo`;
 
                 const res = await fetch(url, {
                     credentials: "include", // Cookies भेजें

@@ -37,7 +37,7 @@ function SellerLogin() {
   const onSubmit = async (data: any) => {
     setServerError(''); // Reset previous errors
     try {
-      const response = await fetch(`${BASE_URL}/seller/login`, {
+      const response = await fetch(`${BASE_URL}/api/seller/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

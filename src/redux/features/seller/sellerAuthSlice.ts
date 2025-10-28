@@ -24,7 +24,7 @@ export const fetchSellerAuth = createAsyncThunk(
     'sellerAuth/fetchSellerAuth',
     async (_, { rejectWithValue }) => {
         try {
-            const res = await fetch(`${BASE_URL}/seller/authentication`, {
+            const res = await fetch(`${BASE_URL}/api/seller/authentication`, {
                 credentials: 'include',
             });
 
