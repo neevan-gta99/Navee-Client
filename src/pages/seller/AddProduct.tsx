@@ -23,7 +23,7 @@ function AddProduct() {
     "Boys Watches and Accessories",
     "Girls Watches and Accessories",
     "Bags",
-    "Suits",
+    "Suitcases",
     "Luggage",
   ];
 
@@ -41,7 +41,7 @@ function AddProduct() {
     { label: "Boys Watches and Accessories", slug: "boys-wa" },
     { label: "Girls Watches and Accessories", slug: "girls-wa" },
     { label: "Bags", slug: "bags" },
-    { label: "Suits", slug: "suitcases" },
+    { label: "Suitcases", slug: "suitcases" },
     { label: "Luggage", slug: "luggage" },
   ];
 

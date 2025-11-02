@@ -147,6 +147,7 @@ function AddWomenFootwear() {
 
       if (response.ok) {
         alert("Product added successfully!");
+        setTotalStock(0);
         reset();
         setFiles([]);
       } else {
@@ -172,9 +173,8 @@ function AddWomenFootwear() {
         <input {...register("brand", { required: "Brand is required" })} placeholder="Brand Name" type="text" />
         <br /><br />
 
-        <select {...register("category", { required: true })} value={category ?? ""} disabled>
-          <option value="Women Footwear">Women Footwear</option>
-        </select>
+        <input {...register("category", { required: "Category is required" })} placeholder="Category" value={category ?? ""} readOnly type="text" />
+
         <br /><br />
 
         <select {...register("subCategory", { required: true })} defaultValue="">

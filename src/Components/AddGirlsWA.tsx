@@ -92,7 +92,7 @@ function AddGirlsWA() {
     }
   }, [focusTarget]);
 
-  const product_Type = watch("productType");
+  const product_Type = watch("subCategory");
 
   const onSubmit = async (data: any) => {
     const groupedVariants: { [size: string]: { size: string, variants: { color: string, stock: number }[] } } = {};
@@ -172,6 +172,7 @@ function AddGirlsWA() {
       if (response.ok) {
         alert("Product added successfully!");
         reset();
+        setTotalStock(0);
         setFiles([]);
         setSelectedSizes([]);
       } else {
@@ -197,7 +198,7 @@ function AddGirlsWA() {
         <br /><br />
 
         {/* Dynamic Category Selection */}
-        <select {...register("productType", { required: true })} defaultValue="">
+        <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Category</option>
           <option value="Watches">Watches</option>
           <option value="Accessories">Accessories</option>
@@ -227,7 +228,7 @@ function AddGirlsWA() {
         {/* Dynamic fields for GirlsWatches */}
         {product_Type === "Watches" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Type</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
@@ -254,7 +255,7 @@ function AddGirlsWA() {
         {/* Dynamic fields for GirlsAccessories */}
         {product_Type === "Accessories" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>

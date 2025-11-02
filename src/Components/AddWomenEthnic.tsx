@@ -148,6 +148,7 @@ function AddWomenEthnic() {
 
       if (response.ok) {
         alert("Product added successfully!");
+        setTotalStock(0);
         reset();
         setFiles([]);
       } else {

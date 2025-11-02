@@ -88,8 +88,7 @@ function AddBoysBrands() {
 
 
 
-  // Watch the category field to conditionally render other fields
-  const product_Type = watch("productType");
+  const product_Type = watch("subCategory");
 
   const currentSizes =
     ["Topwear", "Bottomwear"].includes(product_Type)
@@ -167,6 +166,7 @@ function AddBoysBrands() {
 
       if (response.ok) {
         alert("Product added successfully!");
+        setTotalStock(0);
         reset();
         setFiles([]);
       } else {
@@ -193,11 +193,11 @@ function AddBoysBrands() {
         <input {...register("brand", { required: "Brand is required" })} placeholder="Brand Name" type="text" />
         <br /><br />
 
-        <input {...register("category", { required: "Category is required" })} placeholder="Category" value={category ?? ""} readOnly type="text" />
+        <input {...register("category", { required: "Category is required" })} value={category ?? ""} readOnly type="text" />
         <br /><br />
 
         {/* Dynamic Category Selection */}
-        <select {...register("productType", { required: true })} defaultValue="">
+        <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Category</option>
           <option value="Topwear">Topwear</option>
           <option value="Bottomwear">Bottomwear</option>
@@ -208,7 +208,7 @@ function AddBoysBrands() {
         {/* Subcategory options based on selected Category */}
         {product_Type === "Topwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {topwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
@@ -217,7 +217,7 @@ function AddBoysBrands() {
         )}
         {product_Type === "Bottomwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {bottomwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
@@ -226,7 +226,7 @@ function AddBoysBrands() {
         )}
         {product_Type === "Footwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {footwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>

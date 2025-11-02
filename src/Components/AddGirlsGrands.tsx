@@ -87,7 +87,7 @@ function AddGirlsGrands() {
   }, [focusTarget]);
 
   // Watch the category field to conditionally render other fields
-  const product_Type = watch("productType");
+  const product_Type = watch("subCategory");
 
   const currentSizes =
     ["Topwear", "Bottomwear"].includes(product_Type)
@@ -168,6 +168,7 @@ function AddGirlsGrands() {
 
       if (response.ok) {
         alert("Product added successfully!");
+        setTotalStock(0);
         reset();
         setFiles([]);
       } else {
@@ -199,7 +200,7 @@ function AddGirlsGrands() {
         <br /><br />
 
         {/* Dynamic Category Selection */}
-        <select {...register("productType", { required: true })} defaultValue="">
+        <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Category</option>
           <option value="Topwear">Topwear</option>
           <option value="Bottomwear">Bottomwear</option>
@@ -210,7 +211,7 @@ function AddGirlsGrands() {
         {/* Subcategory options based on selected Category */}
         {product_Type === "Topwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {topwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
@@ -219,7 +220,7 @@ function AddGirlsGrands() {
         )}
         {product_Type === "Bottomwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {bottomwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
@@ -228,7 +229,7 @@ function AddGirlsGrands() {
         )}
         {product_Type === "Footwear" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {footwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>

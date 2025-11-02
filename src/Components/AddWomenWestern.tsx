@@ -147,6 +147,7 @@ function AddWomenWestern() {
 
       if (response.ok) {
         alert("Product added successfully!");
+        setTotalStock(0);
         reset();
         setFiles([]);
       } else {
@@ -179,11 +180,9 @@ function AddWomenWestern() {
         <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Subcategory</option>
           <option value="Tops">Tops</option>
-          <option value="Dresses">Dresses</option>
           <option value="Jeans">Jeans</option>
           <option value="Skirts">Skirts</option>
           <option value="Trousers">Trousers</option>
-          <option value="Jumpsuits">Jumpsuits</option>
         </select>
         <br /><br />
 

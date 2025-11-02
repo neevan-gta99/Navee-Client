@@ -92,7 +92,7 @@ function AddMensWA() {
     }
   }, [focusTarget]);
 
-  const product_Type = watch("productType");
+  const product_Type = watch("subCategory");
 
 
   // Conditionally choose the sizes array
@@ -180,6 +180,7 @@ function AddMensWA() {
       if (response.ok) {
         alert("Product added successfully!");
         reset();
+        setTotalStock(0);
         setFiles([]);
       } else {
         alert(`Error: ${jsonData.message || "Something went wrong"}`);
@@ -203,11 +204,11 @@ function AddMensWA() {
         <input {...register("name", { required: "Product Name is required" })} placeholder="Product Name" type="text" />
         <br /><br />
 
-        <input {...register("category", { required: "Category is required" })} placeholder="Category" value={category ?? ""} readOnly type="text" />
+        <input {...register("category", { required: "Category is required" })} placeholder={category ?? ""} value="Mens WA" readOnly type="text" />
         <br /><br />
 
         {/* Dynamic Category Selection */}
-        <select {...register("productType", { required: true })} defaultValue="">
+        <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Category</option>
           <option value="Watches">Watches</option>
           <option value="Accessories">Accessories</option>
@@ -237,7 +238,7 @@ function AddMensWA() {
         {/* Dynamic fields for Watches */}
         {product_Type === "Watches" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Type</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
@@ -271,7 +272,7 @@ function AddMensWA() {
         {/* Dynamic fields for Accessories */}
         {product_Type === "Accessories" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Subcategory</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>

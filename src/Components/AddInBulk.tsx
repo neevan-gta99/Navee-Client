@@ -1,8 +1,11 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { csvTemplateLinks } from "@/utils/csvTemplateLinks";
+import templates_Links from "@/utils/templateLinks/TemplateLinks.ts";
 import { useForm } from "react-hook-form";
 import { BASE_URL } from "@/config/apiConfig.ts";
+import * as XLSX from 'xlsx';
+import product_Sheet_Validator from "@/utils/products/productSheetValidation";
+import filter_Maps from "@/utils/products/filterMap";
 
 function AddInBulk() {
   const [searchParams] = useSearchParams();
@@ -20,7 +23,7 @@ function AddInBulk() {
   const goToCSVTemplate = () => {
     if (category) {
       const slug = category.toLowerCase().replace(/\s+/g, "");
-      const sheetLink = csvTemplateLinks[slug];
+      const sheetLink = templates_Links.csvTemplateLinks[slug];
       if (sheetLink) {
         window.open(sheetLink, "_blank");
       } else {
@@ -29,43 +32,216 @@ function AddInBulk() {
     }
   };
 
-  const onSubmit = async (data: any) => {
-    const sheetFile = data.sheet?.[0];
-    const imageFiles = Array.from(data.images || []) as File[];
+  const downloadExcelTemplate = () => {
+    if (category) {
+      const slug = category.toLowerCase().replace(/\s+/g, "");
+      const downloadLink = templates_Links.excelTemplateLinks[slug]; // ✅ corrected spelling
 
-
-    if (!sheetFile || !imageFiles || imageFiles.length === 0) {
-      alert("Please select both CSV and images.");
-      return;
+      if (downloadLink) {
+        // ✅ Use anchor trick for direct download
+        const anchor = document.createElement("a");
+        anchor.href = downloadLink;
+        anchor.download = ""; // optional: force download
+        anchor.target = "_blank"; // optional: open in new tab
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+      } else {
+        alert("Template link not found for this category.");
+      }
     }
+  };
+
+  const parseXLSX = (file: File): Promise<any[]> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target?.result as ArrayBuffer);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        resolve(json);
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+  };
+
+  const csvUpload = async (images: File[], sheet: File) => {
 
     const formData = new FormData();
-    formData.append("sheet", sheetFile);
+    formData.append("sheet", sheet);
+    images.forEach((img) => formData.append("images", img));
+    
 
-    imageFiles.forEach((img) => formData.append("images", img));
+    if (sellerID && category) {
 
-
-    if (sellerID) {
       formData.append("sellerID", sellerID);
+      formData.append("collection", category);
+
+
+      if (category != "Bags" && category != "Suitcases" && category != "Luggages") {
+
+        const withoutSpaceCategoy = category.replace(/\s+/g, "");
+
+
+        formData.append("gender", filter_Maps.categoryGenderMap[withoutSpaceCategoy]);
+        
+      }
+
+
     }
 
+
     try {
-      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk`, {
+      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk/csv`, {
         method: "POST",
         body: formData,
       });
       const result = await res.json();
-      if (!res.ok) {
-        alert("File upload Unsuccessful:\n" + (result.failed?.join("\n") || result.message || "Unknown error"));
-      } else {
-        alert("File uploaded successfully!");
-      }
+      const { success = [], failed = [] } = result;
 
+      const message =
+        failed.length === 0
+          ? "✅ Bulk upload completed successfully!"
+          : success.length === 0
+            ? "❌ Bulk upload failed completely."
+            : "⚠️ Bulk upload completed with partial success";
+
+      const details =
+        failed.length > 0
+          ? "\nFailed items:\n" + failed.join("\n")
+          : "";
+
+      alert(`${message}${details || "\nAll items uploaded successfully!"}`);
       reset();
+
     } catch (err) {
       console.error("Upload error:", err);
       alert("Upload failed.");
     }
+
+  }
+
+  const excelUpload = async (images: File[], sheet: File) => {
+    const parsedData = await parseXLSX(sheet);
+
+
+    const cleanedData = parsedData.map((row) => {
+      const cleanedRow: Record<string, any> = {};
+
+      for (const key in row) {
+        const cleanKey = key.split(" ").join("");
+        cleanedRow[cleanKey] = row[key];
+      }
+      return cleanedRow;
+    });
+
+
+    const { validProducts, failedUploads } = product_Sheet_Validator.excelSheetValidation(cleanedData, images);
+
+    const typedValidProducts: any[] = validProducts;
+    const typedFailedUploads: string[] = failedUploads;
+
+    if (validProducts.length == 0) {
+      const errMessage = "❌ Bulk upload failed completely.";
+      const errDetails = failedUploads.join("\n");
+
+      reset();
+      alert(`${errMessage}\n${errDetails}`);
+      return;
+    }
+
+    const formData = new FormData();
+
+    if (sellerID && category) {
+
+      formData.append("sellerID", sellerID);
+      formData.append("collection", category);
+
+
+      if (category != "Bags" && category != "Suitcases" && category != "Luggages") {
+
+        const withoutSpaceCategoy = category.replace(/\s+/g, "");
+
+
+        formData.append("gender", filter_Maps.categoryGenderMap[withoutSpaceCategoy]);
+
+        if(filter_Maps.miniCategoryMap[withoutSpaceCategoy]){
+          validProducts.map((product)=>{
+            if(product.Category){
+              product.Category = filter_Maps.miniCategoryMap[withoutSpaceCategoy]
+            }
+          });
+        }
+        
+      }
+
+
+    }
+
+    if (typedFailedUploads.length > 0) {
+      formData.append("failedUploadsFromClient", JSON.stringify(typedFailedUploads));
+    }
+
+    formData.append("products", JSON.stringify(typedValidProducts));
+
+    images.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    try {
+      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk/xlsx`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await res.json();
+      const { success = [], failed = [] } = result;
+
+      const message =
+        failed.length === 0
+          ? "✅ Bulk upload completed successfully!"
+          : success.length === 0
+            ? "❌ Bulk upload failed completely."
+            : "⚠️ Bulk upload completed with partial success";
+
+      const details =
+        failed.length > 0
+          ? failed.join("\n")
+          : "";
+
+      reset();
+
+      alert(`${success}\n${message}\n${details || "\nAll items uploaded successfully!"}`);
+
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Upload failed.");
+    }
+
+  }
+
+  const onSubmit = async (data: any) => {
+    const sheetFile = data.sheet?.[0];
+    const fileType = sheetFile?.type;
+
+    const imageFiles = Array.from(data.images || []) as File[];
+
+
+    if (!sheetFile || !imageFiles || imageFiles.length === 0) {
+      alert("Please select both sheet and images.");
+      return;
+    }
+    if (fileType === "text/csv") {
+      csvUpload(imageFiles, sheetFile);
+    } else if (fileType === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+      excelUpload(imageFiles, sheetFile);
+    } else {
+      alert("Unknown File Type");
+      return;
+    }
+
   };
 
   const selectedSheet = watch("sheet")?.[0];
@@ -89,7 +265,7 @@ function AddInBulk() {
           <button type="button" onClick={goToCSVTemplate}>
             📄 Open Google Sheet Template
           </button>
-          <button type="button" onClick={goToCSVTemplate}>
+          <button type="button" onClick={downloadExcelTemplate}>
             📥 Download XLSX Template
           </button>
         </div>

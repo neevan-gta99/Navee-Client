@@ -148,6 +148,7 @@ function AddMenFootwear() {
       if (response.ok) {
         alert("Product added successfully!");
         reset();
+        setTotalStock(0);
         setFiles([]);
       } else {
         alert(`Error: ${jsonData.message || "Something went wrong"}`);

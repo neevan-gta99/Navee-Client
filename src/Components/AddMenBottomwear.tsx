@@ -133,7 +133,6 @@ function AddMenBottomwear() {
       files.forEach((file) => {
         formData.append("images", file);
       });
-      formData.append("collection", "Men Bottomwear");
     } else {
       alert("Please select at least one image.");
       return;

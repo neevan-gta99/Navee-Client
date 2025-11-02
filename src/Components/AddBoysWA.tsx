@@ -92,13 +92,13 @@ function AddBoysWA() {
     }
   }, [focusTarget]);
 
-  const product_Type = watch("productType");
-  const sub_Category = watch("subCategory");
+  const product_Type = watch("subCategory");
+  const sub_Sub_Category = watch("subSubCategory");
 
   const onSubmit = async (data: any) => {
     const groupedVariants: { [size: string]: { size: string, variants: { color: string, stock: number }[] } } = {};
 
-    if (product_Type === "Accessories" && sub_Category === "Cap" && selectedSizes.length > 0) {
+    if (product_Type === "Accessories" && sub_Sub_Category === "Cap" && selectedSizes.length > 0) {
       // Logic for caps with sizes
       selectedSizes.forEach((size) => {
         groupedVariants[size] = {
@@ -175,6 +175,7 @@ function AddBoysWA() {
       if (response.ok) {
         alert("Product added successfully!");
         reset();
+        setTotalStock(0);
         setFiles([]);
         setSelectedSizes([]);
       } else {
@@ -199,7 +200,7 @@ function AddBoysWA() {
         <br /><br />
 
         {/* Dynamic Category Selection */}
-        <select {...register("productType", { required: true })} defaultValue="">
+        <select {...register("subCategory", { required: true })} defaultValue="">
           <option value="" disabled>Select Category</option>
           <option value="Watches">Watches</option>
           <option value="Accessories">Accessories</option>
@@ -229,7 +230,7 @@ function AddBoysWA() {
         {/* Dynamic fields for BoysWatches */}
         {product_Type === "Watches" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
               <option value="" disabled>Select Type</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
@@ -255,8 +256,8 @@ function AddBoysWA() {
         {/* Dynamic fields for BoysAccessories */}
         {product_Type === "Accessories" && (
           <>
-            <select {...register("subCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+            <select {...register("subSubCategory", { required: true })} defaultValue="">
+              <option value="" disabled>Select subSubCategory</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />
@@ -278,7 +279,7 @@ function AddBoysWA() {
         <fieldset>
           <legend>Variant</legend>
           {/* Dynamic Size Checkboxes for Caps */}
-          {product_Type === "Accessories" && sub_Category === "Cap" && (
+          {product_Type === "Accessories" && sub_Sub_Category === "Cap" && (
             <>
               <label>Select Sizes:</label>
               <div className="flex gap-4 mt-2 mb-4">

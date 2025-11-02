@@ -137,6 +137,7 @@ function AddMenTopwear() {
             const jsonData = await response.json();
             if (response.ok) {
                 alert("Product added successfully!");
+                setTotalStock(0);
                 reset();
                 setFiles([]);
                 setSelectedSizes([]);

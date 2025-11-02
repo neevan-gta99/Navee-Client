@@ -141,7 +141,7 @@ function AddBags() {
     }
 
     try {
-      const response = await fetch(`${BASE_URL}/addProduct/bags`, {
+      const response = await fetch(`${BASE_URL}/api/addProduct/bags`, {
         method: "POST",
         body: formData,
         credentials: "include",
@@ -152,6 +152,7 @@ function AddBags() {
       if (response.ok) {
         alert("Product added successfully!");
         reset();
+        setTotalStock(0);
         setFiles([]);
       } else {
         alert(`Error: ${jsonData.message || "Something went wrong"}`);
