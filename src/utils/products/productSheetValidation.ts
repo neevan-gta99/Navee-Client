@@ -15,25 +15,20 @@ interface Product {
   name?: string; // optional for error reporting
 }
 
-const sizeVariantsRegex = (sizeBlocks: string[])=> {
-    for (const block of sizeBlocks) {
-    const sizeMatch = block.match(/^([A-Z]+[XL]*)-/);
-    if (!sizeMatch) {
-      return true; // ❌ Size format invalid
-    }
+const sizeVariantsRegex = (sizeBlocks: string[]) => {
+  for (const block of sizeBlocks) {
+    const sizeMatch = block.match(/^(.+?)-/); 
+    if (!sizeMatch) return true;
 
     const colorPairs = block.split("-")[1]?.split("/") || [];
-
     for (const pair of colorPairs) {
-      const parts = pair.trim().split("=");
-      if (parts.length !== 2 || isNaN(Number(parts[1]))) {
-        return true; // ❌ Color-stock pair malformed
-      }
+      const [color, stock] = pair.trim().split("=");
+      if (!color || isNaN(Number(stock))) return true;
     }
   }
+  return false;
+};
 
-  return false; // ✅ All blocks are valid
-}
 
 const parseSizeVariants = (product: Product, allSizes: any[]) => {
 

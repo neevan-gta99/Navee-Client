@@ -8,7 +8,7 @@ import { useSearchParams } from 'react-router-dom';
 function AddWomensWA() {
 
   const watchCategories = ["Analog", "Digital", "Chronograph", "Smartwatch"];
-  const accessorySubcategories = ["Handbag", "Wallet", "Scarf", "Sunglasses", "Jewellery"];
+  const accessorySubcategories = ["Handbag", "Wallet", "Scarf", "Sunglasses"];
   const watchBrands = ["Fossil", "Titan", "Michael Kors", "Casio", "Rolex", "Tissot", "Guess", "Fastrack"];
   const accessoryBrands = ["Lino Perros", "Baggit", "Lavie", "Hidesign", "Caprese", "Aldo"];
   const accessorySizes = ["Small", "Medium", "Large", "One Size"]; // General sizes for accessories like handbags/scarves
@@ -235,7 +235,7 @@ function AddWomensWA() {
         {product_Type === "Watches" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Type</option>
+              <option value="" disabled>Select Sub Sub Caterory</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
             <br /><br />
@@ -269,7 +269,7 @@ function AddWomensWA() {
         {product_Type === "Accessories" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />

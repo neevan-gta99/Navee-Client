@@ -220,6 +220,7 @@ function AddWomenWestern() {
         <select {...register("neck")} defaultValue="">
           <option value="" disabled>Choose Neck Type</option>
           <option value="Round Neck">Round Neck</option>
+          <option value="Square Neck">Round Neck</option>
           <option value="V-Neck">V-Neck</option>
           <option value="Collar Neck">Collar Neck</option>
           <option value="Cowl Neck">Cowl Neck</option>

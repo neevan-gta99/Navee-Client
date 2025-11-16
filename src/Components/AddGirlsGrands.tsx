@@ -12,10 +12,11 @@ function AddGirlsGrands() {
   const footwearSubcategories = ["Sandals", "Ballerinas", "Sneakers", "Boots", "Slippers"];
 
   const clothingMaterials = ["Cotton", "Polyester", "Denim", "Silk Blend", "Net"];
-  const footwearMaterials = ["Synthetic", "Canvas", "Rubber", "Leather"];
+  const footwearOuterMaterials = ["Synthetic", "Canvas", "Rubber"];
+  const footwearSoleMaterials = ["Rubber", "EVA", "TPR","Phylon"];
 
   const clothingSizes = ["2-3 years", "4-5 years", "6-7 years", "8-9 years", "10-11 years", "12-13 years"];
-  const footwearSizes = ["8 (Kids)", "9 (Kids)", "10 (Kids)", "11 (Kids)", "12 (Kids)", "13 (Kids)", "1 (Youth)", "2 (Youth)", "3 (Youth)"];
+  const footwearSizes = ["4", "5", "6", "7", "8", "9", "10", "11"];
   const colors = ["White", "Black", "Gray", "Red", "Blue", "Yellow", "Pink", "Purple", "Brown", "Beige", "Multi"];
 
 
@@ -201,7 +202,7 @@ function AddGirlsGrands() {
 
         {/* Dynamic Category Selection */}
         <select {...register("subCategory", { required: true })} defaultValue="">
-          <option value="" disabled>Select Category</option>
+          <option value="" disabled>Select Sub Category</option>
           <option value="Topwear">Topwear</option>
           <option value="Bottomwear">Bottomwear</option>
           <option value="Footwear">Footwear</option>
@@ -212,7 +213,7 @@ function AddGirlsGrands() {
         {product_Type === "Topwear" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {topwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />
@@ -221,7 +222,7 @@ function AddGirlsGrands() {
         {product_Type === "Bottomwear" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {bottomwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />
@@ -230,7 +231,7 @@ function AddGirlsGrands() {
         {product_Type === "Footwear" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {footwearSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />
@@ -279,7 +280,12 @@ function AddGirlsGrands() {
           <>
             <select {...register("outerMaterial")} defaultValue="">
               <option value="" disabled>Select Outer Material</option>
-              {footwearMaterials.map(mat => <option key={mat} value={mat}>{mat}</option>)}
+              {footwearOuterMaterials.map(mat => <option key={mat} value={mat}>{mat}</option>)}
+            </select>
+            <br /><br />
+            <select {...register("soleMaterial")} defaultValue="">
+              <option value="" disabled>Select Sole Material</option>
+              {footwearSoleMaterials.map(mat => <option key={mat} value={mat}>{mat}</option>)}
             </select>
             <br /><br />
           </>

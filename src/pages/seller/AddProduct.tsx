@@ -24,7 +24,7 @@ function AddProduct() {
     "Girls Watches and Accessories",
     "Bags",
     "Suitcases",
-    "Luggage",
+    "Luggages",
   ];
 
   const productCategoryMap = [
@@ -42,7 +42,7 @@ function AddProduct() {
     { label: "Girls Watches and Accessories", slug: "girls-wa" },
     { label: "Bags", slug: "bags" },
     { label: "Suitcases", slug: "suitcases" },
-    { label: "Luggage", slug: "luggage" },
+    { label: "Luggages", slug: "luggages" },
   ];
 
   const location = useLocation();

@@ -239,7 +239,7 @@ function AddMensWA() {
         {product_Type === "Watches" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Type</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
             <br /><br />
@@ -273,7 +273,7 @@ function AddMensWA() {
         {product_Type === "Accessories" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />

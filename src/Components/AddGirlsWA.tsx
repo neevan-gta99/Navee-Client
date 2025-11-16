@@ -7,12 +7,12 @@ import { useSearchParams } from 'react-router-dom';
 
 function AddGirlsWA() {
 
-  const watchCategories = ["Analog", "Digital", "Smartwatch"];
+  const watchCategories = ["Analog", "Digital", "Smart Watch"];
   const accessorySubcategories = ["School Bag", "Hairband", "Sunglasses", "Jewellery"];
   const watchBrands = ["Fastrack", "Casio", "Timex", "Fossil", "Disney", "Barbie"];
   const accessoryBrands = ["Skybags", "Disney", "Barbie", "Hello Kitty", "Wildcraft"];
   const accessorySizes = ["One Size", "S", "M", "L"];
-  const accessoryMaterials = ["Leather", "Synthetic Leather", "Fabric", "Metal", "Plastic", "Polycarbonate"];
+  const accessoryMaterials = ["Leather", "Synthetic Leather", "Fiber", "Metal", "Plastic", "Polycarbonate"];
   const colors = ["Black", "White", "Blue", "Red", "Pink", "Purple", "Green", "Yellow", "Gold", "Silver"];
 
   const [searchParams] = useSearchParams();
@@ -187,7 +187,7 @@ function AddGirlsWA() {
 
   return (
     <div>
-      <h1 className='mt-20'>Add Girls' Watches & Accessories</h1>
+      <h1 className='mt-20'>Add Girls Watches & Accessories</h1>
       <br /><br />
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -229,7 +229,7 @@ function AddGirlsWA() {
         {product_Type === "Watches" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Type</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
             <br /><br />
@@ -256,7 +256,7 @@ function AddGirlsWA() {
         {product_Type === "Accessories" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Subcategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />

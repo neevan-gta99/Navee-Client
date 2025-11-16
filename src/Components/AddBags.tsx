@@ -190,13 +190,12 @@ function AddBags() {
           <option value="" disabled>Select Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
-          <option value="Unisex">Unisex</option>
         </select>
         <br /><br />
         <br />
 
         <select {...register("subCategory", { required: "Sub-category is required" })} defaultValue="">
-          <option value="" disabled>Select Bag Type</option>
+          <option value="" disabled>Select Sub Category</option>
           {bagSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
         </select>
         <br /><br />

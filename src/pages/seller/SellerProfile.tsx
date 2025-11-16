@@ -9,7 +9,6 @@ function SellerProfile() {
     const { sellerId } = useParams();
     const navigate = useNavigate();
     const [profileData, setProfileData] = useState<any>(null); // Store the full profile data
-    const dispatch = useAppDispatch();
 
 
    const { pathname } = useLocation();
@@ -113,24 +112,10 @@ function SellerProfile() {
         fetchProfile();
     }, [sellerId, navigate]);
 
-
-    const logout = async () => {
-        try {
-            dispatch(logoutSellerSession()).then(() => {
-                navigate("/seller/login");
-            });
-
-
-        } catch (error) {
-
-            navigate("/seller/login");
-        }
-    };
-
     return (
         <div>
             <h2 className='mt-44'>Seller Profile! Hey {profileData?.fullName}</h2>
-            <button onClick={logout}>LogOut</button>
+            
         </div>
     );
 }

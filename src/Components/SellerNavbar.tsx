@@ -1,34 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import type { RootState } from '@/redux/store/store';
 import { useLocation } from 'react-router-dom';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { logoutSellerSession } from '@/redux/features/seller/sellerAuthSlice';
 
 
 function SellerNavbar() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+
+
+    const isOnProfilePage = location.pathname === "/seller/profile";
+    const isOnLoginPage = location.pathname === "/seller/login";
+    const isOnRegisterPage = location.pathname === "/seller/register";
 
     const loginTimestamp = useAppSelector((state: RootState) => state.sellerAuth.loginTimestamp);
-    
-    useEffect(()=>{
 
-        if(loginTimestamp != null){
+    useEffect(() => {
+
+        if (loginTimestamp != null) {
             setIsLoggedIn(true);
         }
-        else{
+        else {
             setIsLoggedIn(false)
         }
 
-    },[pathname])
-    
+    }, [pathname])
+
+    const handleLogout = async () => {
+        try {
+            dispatch(logoutSellerSession()).then(() => {
+                navigate("/seller/login");
+            });
+
+
+        } catch (error) {
+
+            navigate("/seller/login");
+        }
+    };
+
 
     return (
         <div>
             <div className="seller-main-navbar bg-white">
                 <div className="logo">
-                    <NavLink to="/">Navee</NavLink>
+                    <NavLink to="/">Trendora</NavLink>
                 </div>
                 <div className="">
                     <ul className='flex justify-around items-center text-black m-4'>
@@ -55,15 +77,57 @@ function SellerNavbar() {
 
                 <div className="login-signup">
                     {isLoggedIn ? (
-                        <NavLink to="/seller/profile" className="signup-btn-with-scroll">Profile</NavLink>
+                        isOnProfilePage ? (
+                            <button
+                                className="signup-btn-with-scroll"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <NavLink
+                                to="/seller/profile"
+                                className="signup-btn-with-scroll"
+                            >
+                                Profile
+                            </NavLink>
+                        )
                     ) : (
                         <>
-                            <NavLink to="/seller/register" className="signup-btn-with-scroll">Register</NavLink>
-                            <NavLink to="/seller/login" className="signup-btn-with-scroll">Login</NavLink>
-
+                            {isOnLoginPage ? (
+                                <NavLink
+                                    to="/seller/register"
+                                    className="signup-btn-with-scroll"
+                                >
+                                    Register
+                                </NavLink>
+                            ) : isOnRegisterPage ? (
+                                <NavLink
+                                    to="/seller/login"
+                                    className="signup-btn-with-scroll"
+                                >
+                                    Login
+                                </NavLink>
+                            ) : (
+                                <>
+                                    <NavLink
+                                        to="/seller/register"
+                                        className="signup-btn-with-scroll"
+                                    >
+                                        Register
+                                    </NavLink>
+                                    <NavLink
+                                        to="/seller/login"
+                                        className="signup-btn-with-scroll"
+                                    >
+                                        Login
+                                    </NavLink>
+                                </>
+                            )}
                         </>
                     )}
                 </div>
+
             </div>
         </div>
     );

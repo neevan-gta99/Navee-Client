@@ -47,6 +47,15 @@ import AddLuggage from "./Components/AddLuggage"
 import ProtectedSellerRoute from "./Components/ProtectedSellerRoute"
 import ShowCase from "./Components/ShowCase"
 import AddInBulk from "./Components/AddInBulk"
+import AdminLayout from "./Components/Layouts/AdminLayout"
+import AdminDashboard from "./pages/admin/AdminDashboard"
+import DBMigration from "./pages/admin/DBMigration"
+import SellerMonitor from "./pages/admin/SellerMonitor"
+import SellerManagement from "./pages/admin/SellerManagement"
+import SellerApproval from "./pages/admin/SellerApproval"
+import SupportSystem from "./pages/admin/SupportSystem"
+import AdminLogin from "./pages/admin/AdminLogin"
+import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute"
 
 const AppRoutes = () => {
 
@@ -70,7 +79,7 @@ const AppRoutes = () => {
                 <Route path="womens-wa" element={<WomensWA />} />
                 <Route path="bags" element={<Bags />} />
                 <Route path="suitcases" element={<Suitcases />} />
-                <Route path="luggage" element={<Luggage />} />
+                <Route path="luggages" element={<Luggage />} />
                 <Route path="showcase" element={<ShowCase />} />
             </Route>
 
@@ -106,7 +115,7 @@ const AppRoutes = () => {
                     <Route path="girls-wa/single" element={<AddGirlsWA />} />
                     <Route path="bags/single" element={<AddBags />} />
                     <Route path="suitcases/single" element={<AddSuitcases />} />
-                    <Route path="luggage/single" element={<AddLuggage />} />
+                    <Route path="luggages/single" element={<AddLuggage />} />
                     <Route path="bulk" element={<AddInBulk />} />
                 </Route>
 
@@ -116,6 +125,21 @@ const AppRoutes = () => {
                 <Route path="admin-support" element={<AdminSupport />} />
                 <Route path="register" element={<SellerRegister />} />
                 <Route path="login" element={<SellerLogin />} />
+            </Route>
+
+
+            <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<ProtectedAdminRoute> <AdminDashboard /> </ProtectedAdminRoute> } />
+                <Route path="dashboard" element={<ProtectedAdminRoute> <AdminDashboard /> </ProtectedAdminRoute> } />
+                <Route path="dashboard/:adminId" element={<ProtectedAdminRoute> <AdminDashboard /></ProtectedAdminRoute> } />
+                <Route path="login" element={<AdminLogin />} />
+                
+                <Route path="db-migration" element={<DBMigration />} />
+                <Route path="seller-monitor" element={<SellerMonitor  />} />
+                <Route path="seller-management" element={<SellerManagement />} />
+                <Route path="seller-approval" element={<SellerApproval />} />
+                <Route path="support" element={<SupportSystem />} />
+
             </Route>
 
         </Routes>

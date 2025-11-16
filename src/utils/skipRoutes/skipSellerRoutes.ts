@@ -1,4 +1,4 @@
- export const skipGuardRoutes = [
+ export const skipSellerGuardRoutes = [
     '/seller/login',
     '/seller/register',
     '/seller/how-it-works',
@@ -6,3 +6,4 @@
     '/seller/admin-support',
     '/seller/analytics',
   ];
+  

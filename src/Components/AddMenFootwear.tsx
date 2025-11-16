@@ -234,7 +234,7 @@ function AddMenFootwear() {
         <br /><br />
 
         <select {...register("occasion")} defaultValue="">
-          <option value="" disabled>Select Ideal For</option>
+          <option value="" disabled>Select Occasion</option>
           <option value="Casual">Casual</option>
           <option value="Formal">Formal</option>
           <option value="Sports">Sports</option>

@@ -10,6 +10,7 @@ import filter_Maps from "@/utils/products/filterMap";
 function AddInBulk() {
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
+  const path_category = category?.trim().toLowerCase().replace(/\s+/g, '-');
   const sellerID = searchParams.get("seller_Id");
 
   const {
@@ -72,7 +73,7 @@ function AddInBulk() {
     const formData = new FormData();
     formData.append("sheet", sheet);
     images.forEach((img) => formData.append("images", img));
-    
+
 
     if (sellerID && category) {
 
@@ -86,7 +87,7 @@ function AddInBulk() {
 
 
         formData.append("gender", filter_Maps.categoryGenderMap[withoutSpaceCategoy]);
-        
+
       }
 
 
@@ -94,7 +95,7 @@ function AddInBulk() {
 
 
     try {
-      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk/csv`, {
+      const res = await fetch(`${BASE_URL}/api/addProduct/${path_category}/bulk/csv`, {
         method: "POST",
         body: formData,
       });
@@ -132,11 +133,18 @@ function AddInBulk() {
 
       for (const key in row) {
         const cleanKey = key.split(" ").join("");
-        cleanedRow[cleanKey] = row[key];
+
+        let value = row[key];
+
+        if (cleanKey.toLowerCase() === "features" && typeof value === "string") {
+          value = value.split(",").map((f) => f.trim());
+        }
+
+        cleanedRow[cleanKey] = value;
       }
+
       return cleanedRow;
     });
-
 
     const { validProducts, failedUploads } = product_Sheet_Validator.excelSheetValidation(cleanedData, images);
 
@@ -167,14 +175,14 @@ function AddInBulk() {
 
         formData.append("gender", filter_Maps.categoryGenderMap[withoutSpaceCategoy]);
 
-        if(filter_Maps.miniCategoryMap[withoutSpaceCategoy]){
-          validProducts.map((product)=>{
-            if(product.Category){
+        if (filter_Maps.miniCategoryMap[withoutSpaceCategoy]) {
+          validProducts.map((product) => {
+            if (product.Category) {
               product.Category = filter_Maps.miniCategoryMap[withoutSpaceCategoy]
             }
           });
         }
-        
+
       }
 
 
@@ -191,7 +199,7 @@ function AddInBulk() {
     });
 
     try {
-      const res = await fetch(`${BASE_URL}/api/addProduct/men-topwear/bulk/xlsx`, {
+      const res = await fetch(`${BASE_URL}/api/addProduct/${path_category}/bulk/xlsx`, {
         method: "POST",
         body: formData,
       });

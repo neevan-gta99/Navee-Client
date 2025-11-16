@@ -68,7 +68,7 @@ const Navbar = () => {
 
             <div className="customer-top-navbar">
                 <div className="logo">
-                    <NavLink to="/">Navee</NavLink>
+                    <NavLink to="/">Trendora</NavLink>
                 </div>
                 <div className="search-bar">
                     Search Bar

@@ -8,9 +8,9 @@ import { useSearchParams } from 'react-router-dom';
 function AddLuggage() {
 
   const luggageBrands = ["Samsonite", "American Tourister", "VIP", "Safari", "Delsey", "Travelpro"];
-  const luggageSubcategories = ["Suitcase", "Trolley Bag", "Duffel Bag (with wheels)", "Carry-on"];
+  const luggageSubcategories = ["Trolley Bag", "Duffel Bag (with wheels)", "Carry-on"];
   const luggageMaterials = ["Polycarbonate", "ABS", "Nylon (Durable)", "Polyester (Durable)", "Aluminium"];
-  const luggageSizes = ["Cabin (Up to 22 inch)", "Medium (23-27 inch)", "Large (28+ inch)"];
+  const luggageSizes = ["Small", "Medium", "Large"];
   const luggageFeatures = ["TSA Lock", "Expandable", "Spinner Wheels", "Hard Shell", "Soft Shell", "Water-resistant"];
   const colors = ["White", "Black", "Navy", "Gray", "Charcoal", "Red", "Blue", "Green", "Yellow", "Pink", "Purple", "Brown", "Beige", "Khaki", "Maroon", "Olive", "Teal", "Cream", "Multi"];
 
@@ -194,7 +194,7 @@ function AddLuggage() {
         <br />
 
         <select {...register("subCategory", { required: "Sub-category is required" })} defaultValue="">
-          <option value="" disabled>Select Luggage Type</option>
+          <option value="" disabled>Select Sub Category</option>
           {luggageSubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
         </select>
         <br /><br />
@@ -213,15 +213,7 @@ function AddLuggage() {
         <select {...register("numWheels")} defaultValue="">
           <option value="" disabled>Number of Wheels</option>
           <option value="2-Wheels">2 Wheels</option>
-          <option value="4-Wheels (Spinner)">4 Wheels (Spinner)</option>
-        </select>
-        <br /><br />
-
-        <select {...register("lockType")} defaultValue="">
-          <option value="" disabled>Lock Type</option>
-          <option value="Zipper Lock">Zipper Lock</option>
-          <option value="TSA Lock">TSA Lock</option>
-          <option value="Combination Lock">Combination Lock</option>
+          <option value="4-Wheels">4 Wheels</option>
         </select>
         <br /><br />
 

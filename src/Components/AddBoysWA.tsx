@@ -7,12 +7,12 @@ import { useSearchParams } from 'react-router-dom';
 
 function AddBoysWA() {
 
-  const watchCategories = ["Analog", "Digital", "Smartwatch"];
+  const watchCategories = ["Analog", "Digital", "Smart Watch"];
   const accessorySubcategories = ["School Bag", "Cap", "Sunglasses", "Belt"];
   const watchBrands = ["Fastrack", "Casio", "Timex", "Fossil", "Disney", "Marvel"];
   const accessoryBrands = ["Skybags", "Wildcraft", "American Tourister", "Fastrack", "Marvel", "Cartoon Network"];
   const capSizes = ["S", "M", "L", "Adjustable"];
-  const accessoryMaterials = ["Leather", "Synthetic Leather", "Fabric", "Metal", "Plastic", "Polycarbonate"];
+  const accessoryMaterials = ["Leather", "Cotton","Synthetic Leather", "Fabric", "Metal", "Plastic", "Polycarbonate"];
   const colors = ["Black", "Blue", "Red", "Green", "Yellow", "White", "Gray"];
 
   const [searchParams] = useSearchParams();
@@ -190,7 +190,7 @@ function AddBoysWA() {
 
   return (
     <div>
-      <h1 className='mt-20'>Add Boys' Watches & Accessories</h1>
+      <h1 className='mt-20'>Add Boys Watches & Accessories</h1>
       <br /><br />
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Basic Info */}
@@ -231,7 +231,7 @@ function AddBoysWA() {
         {product_Type === "Watches" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select Type</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {watchCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
             <br /><br />
@@ -257,7 +257,7 @@ function AddBoysWA() {
         {product_Type === "Accessories" && (
           <>
             <select {...register("subSubCategory", { required: true })} defaultValue="">
-              <option value="" disabled>Select subSubCategory</option>
+              <option value="" disabled>Select Sub Sub Category</option>
               {accessorySubcategories.map(sub => <option key={sub} value={sub}>{sub}</option>)}
             </select>
             <br /><br />

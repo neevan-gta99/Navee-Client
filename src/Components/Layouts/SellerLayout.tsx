@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom"
 import SellerNavbar from "../SellerNavbar";
 import SellerFooter from "../SellerFooter";
-import { useSessionExpiryGuard } from '@/customHooks/auths/useSessionExpiryGuard'
-import { skipGuardRoutes } from '@/utils/seller/skipSellerRoutes'
+import Expiry_Guards from "@/customHooks/auths/useSessionExpiryGuard";
+import { skipSellerGuardRoutes } from '@/utils/skipRoutes/skipSellerRoutes'
 import ScrollToTop from "../ScrollToTop";
 
 const SellerLayout = () => {
 
 
-    useSessionExpiryGuard(skipGuardRoutes);
+    Expiry_Guards.useSellerSessionExpiryGuard(skipSellerGuardRoutes);
+    
 
 
     return (<>
