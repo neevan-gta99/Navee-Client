@@ -70,7 +70,8 @@ export const excelSheetValidation = (products: any[], images: File[]) => {
     console.log(products);
 
     products.forEach((product) => {
-
+        product.Sizes = product.Sizes.replace(/\s+/g, "");
+        
         const perProductImages = product.Images?.split(",") || [];
         console.log(perProductImages);
         if (perProductImages.length > 10) {
