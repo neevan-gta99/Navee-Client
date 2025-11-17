@@ -49,9 +49,9 @@ function AdminNavbar() {
                 </div>
                 <div className="">
                     <ul className='flex justify-around items-center text-black m-4'>
-                        <li>
+                        {/* <li>
                             <NavLink to="/admin/db-migration" className="hover-underline-with-scroll">Migrate DB</NavLink>
-                        </li>
+                        </li> */}
 
 
                         <li>

@@ -134,7 +134,7 @@ const AppRoutes = () => {
                 <Route path="dashboard/:adminId" element={<ProtectedAdminRoute> <AdminDashboard /></ProtectedAdminRoute> } />
                 <Route path="login" element={<AdminLogin />} />
                 
-                <Route path="db-migration" element={<DBMigration />} />
+                {/* <Route path="db-migration" element={<DBMigration />} /> */}
                 <Route path="seller-monitor" element={<SellerMonitor  />} />
                 <Route path="seller-management" element={<SellerManagement />} />
                 <Route path="seller-approval" element={<SellerApproval />} />
