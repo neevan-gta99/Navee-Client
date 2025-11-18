@@ -22,7 +22,7 @@ const excelTemplateLinks: Record<string, string> = {
   menfootwear: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538145/Men_Footwear_Template_f9sx1n.xlsx",
   womensethnic: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538145/Women_Ethnic_Template_d1gt6k.xlsx",
   womenswestern: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538146/Women_Western_Template_kw7jou.xlsx",
-  womensfootwear: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538146/Women_Footwear_Template_vultbo.xlsx",
+  womensfootwear: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1763437280/Women_Footwear_Template_xoprhn.xlsx",
   boysbrands: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538143/Boys_Brands_Template_w0tru5.xlsx",
   girlsgrands: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538145/Girls_Grands_Template_r1qbav.xlsx",
   menswatchesandaccessories: "https://res.cloudinary.com/de9nsk1zx/raw/upload/v1762538145/Men_s_Watches_Accessories_Template_mr7adn.xlsx",
